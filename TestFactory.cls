@@ -25,7 +25,6 @@ public with sharing class TestFactory {
                          ProfileId = pf.Id, 
                          UserRoleId = obj.Id);
         insert uu;
-        
         return uu;
     } 
     

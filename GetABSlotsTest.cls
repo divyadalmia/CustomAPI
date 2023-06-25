@@ -146,49 +146,6 @@ public with sharing class GetABSlotsTest {
         }
     }
 
-    /*
-    @isTest static void doPostTestWithDefaultOH() {
-        
-        system.runAs(TestFactory.UserCreate()) {
-            
-            TestFactory.createSchedulingPolicy();
-            WorkOrder testWO = TestFactory.createWorkOrder();
-            ServiceAppointment testSA = TestFactory.newSAObj('Open');
-            
-            List<ServiceAppointment> tempObj = [Select id,AppointmentNumber from ServiceAppointment where id =: testSA.Id];
-            
-            ABWrapper.requestWrapper requestWrap = new ABWrapper.requestWrapper();
-            requestWrap.serviceAppointmentNumber = tempObj[0].AppointmentNumber;
-            TestFactory.createPostRequest(GET_SLOT_URL,requestWrap);
-            
-            Test.startTest();
-            GetABSlots.doPost();
-            Test.stopTest();
-        }
-        System.AssertEquals(MyABUtil.FAILURE_STATUS_CODE, RestContext.response.statusCode, MyABUtil.MISSING_PARAMETER); 
-    }
-    
-    @isTest static void doPostTestWithDefaultSP() {
-        
-        system.runAs(TestFactory.UserCreate()) {
-            
-            TestFactory.createOperatingHour();
-            WorkOrder testWO = TestFactory.createWorkOrder();
-            ServiceAppointment testSA = TestFactory.newSAObj('Open');
-            
-            List<ServiceAppointment> tempObj = [Select id,AppointmentNumber from ServiceAppointment where id =: testSA.Id];
-            
-            ABWrapper.requestWrapper requestWrap = new ABWrapper.requestWrapper();
-            requestWrap.serviceAppointmentNumber = tempObj[0].AppointmentNumber;
-            TestFactory.createPostRequest(GET_SLOT_URL,requestWrap);
-            
-            Test.startTest();
-            GetABSlots.doPost();
-            Test.stopTest();
-        }
-        System.AssertEquals(MyABUtil.FAILURE_STATUS_CODE, RestContext.response.statusCode, MyABUtil.MISSING_PARAMETER); 
-    } */
-
     @isTest static void catchBlock() {
         
         system.runAs(TestFactory.UserCreate()) {

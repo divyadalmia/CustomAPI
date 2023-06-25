@@ -121,7 +121,6 @@ public with sharing class BookABSlotsTest {
             
             List<ServiceAppointment> tempObj = [Select id,AppointmentNumber from ServiceAppointment where id =: testSA.Id];
             
-            
             ABWrapper.requestWrapper testWrapper = new ABWrapper.requestWrapper();
             testWrapper.serviceAppointmentNumber = tempObj[0].AppointmentNumber;
             TestFactory.createPostRequest(BOOK_SLOT_URL,testWrapper);
