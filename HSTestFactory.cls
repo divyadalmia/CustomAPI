@@ -1,5 +1,5 @@
 @isTest
-public with sharing class HSTestFactory {
+public with sharing class TestFactory {
     
     public static User UserCreate() { 
         UserRole obj=new UserRole(Name= 'ABC'); 
@@ -25,19 +25,6 @@ public with sharing class HSTestFactory {
                          ProfileId = pf.Id, 
                          UserRoleId = obj.Id);
         insert uu;
-        
-        PermissionSet ps = new PermissionSet();
-        ps.Name = 'Test';
-        ps.Label = 'Test';
-        insert ps;
-        SetupEntityAccess sea = new SetupEntityAccess();
-        sea.ParentId = ps.Id;
-        sea.SetupEntityId = [select Id from CustomPermission where DeveloperName = 'Allow_Edit_On_Service_Territory'][0].Id;
-        insert sea;
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-        psa.AssigneeId = uu.Id;
-        psa.PermissionSetId = ps.Id;
-        insert psa;
         
         return uu;
     } 
@@ -88,8 +75,8 @@ public with sharing class HSTestFactory {
     }
     
     public static ServiceAppointment newSAObj(String Status){
-        OperatingHours operatingHour = HSTestFactory.creatOperatingHours('Eastern Operating Hours Test', 'America/New_York');	
-        ServiceTerritory serviceTerritory = HSTestFactory.creatServiceTerritory('MD', operatingHour, True);
+        OperatingHours operatingHour = TestFactory.creatOperatingHours('Eastern Operating Hours Test', 'America/New_York');	
+        ServiceTerritory serviceTerritory = TestFactory.creatServiceTerritory('MD', operatingHour, True);
         
         Datetime beforeStartDate = system.Today().addDays(1);	
         Datetime beforeEndDate = system.Today().addDays(3);	
@@ -101,21 +88,19 @@ public with sharing class HSTestFactory {
         objWorkOrder.ServiceTerritoryId = serviceTerritory.Id;	
         insert objWorkOrder;	
         
-        ServiceAppointment serAppointment = HSTestFactory.createSA(objWorkOrder,Status,datetime.newInstance(2022, 7, 05, 13, 00, 0),datetime.newInstance(2022, 7, 30, 14, 00, 0),serviceTerritory);
+        ServiceAppointment serAppointment = TestFactory.createSA(objWorkOrder,Status,datetime.newInstance(2022, 7, 05, 13, 00, 0),datetime.newInstance(2022, 7, 30, 14, 00, 0),serviceTerritory);
         return serAppointment;
     }
     
     public static void createSchedulingPolicy(){
         FSL__Scheduling_Policy__c fslSchedulingPolicy = new FSL__Scheduling_Policy__c();	
-        fslSchedulingPolicy.Name = 'HS Scheduling Policy';
-        fslSchedulingPolicy.Used_for_Appointment_Booking__c=true;
+        fslSchedulingPolicy.Name = 'Test Scheduling Policy';
         insert fslSchedulingPolicy;	
     }
     
     public static void createOperatingHour(){
         OperatingHours operatingHour = new OperatingHours();	
-        operatingHour.Name = 'HS Operating Hour';
-        operatingHour.Used_for_Appointment_Booking__c = true;
+        operatingHour.Name = 'Test Operating Hour';
         insert operatingHour;	
     }
 }
